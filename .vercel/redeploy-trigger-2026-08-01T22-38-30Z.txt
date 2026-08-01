@@ -1,0 +1,4 @@
+Redeploy trigger
+
+This file was added to force Vercel to redeploy the latest commit.
+Timestamp: 2026-08-01T22:38:30Z

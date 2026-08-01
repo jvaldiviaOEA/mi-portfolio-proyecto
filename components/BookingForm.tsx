@@ -43,9 +43,7 @@ export default function BookingForm({ movie, onReserve }: Props) {
 
       {error && <p style={{ color: 'red' }}>{error}</p>}
 
-      <button type="submit" style={{ background: '#0070f3', color: 'white', padding: '8px 12px', border: 'none', borderRadius: 6 }}>
-        Reservar
-      </button>
+      <button type="submit" className="btn btn-primary">Reservar</button>
     </form>
   )
 }

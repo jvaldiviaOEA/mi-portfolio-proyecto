@@ -11,20 +11,25 @@ export default function Home() {
       .then(setMovies)
   }, [])
 
-  return (
-    <main style={{ padding: 20, fontFamily: 'Inter, sans-serif' }}>
-      <h1>Bookingnefilo — Reserva tu entrada</h1>
-      <p>Selecciona una película y un horario para reservar tus entradas (1–6).</p>
+  useEffect(() => {
+    // Opcional: limpiar la última reserva cuando se vuelve al home
+    try { sessionStorage.removeItem('lastReservation') } catch (e) { /* ignore */ }
+  }, [])
 
-      <div style={{ display: 'grid', gap: 12 }}>
+  return (
+    <main className="container">
+      <h1>Bookingnefilo — Reserva tu entrada</h1>
+      <p style={{ color: 'var(--muted)' }}>Selecciona una película y un horario para reservar tus entradas (1–6).</p>
+
+      <div className="movie-grid">
         {movies.map((m) => (
-          <article key={m.id} style={{ border: '1px solid #ddd', padding: 12 }}>
+          <article key={m.id} className="movie-card">
             <h2>{m.title}</h2>
             <p>Duración: {m.duration} min</p>
-            <p>Horarios: {m.times.join(' · ')}</p>
-            <Link href={`/book/${m.id}`}>
-              <a style={{ color: 'white', background: '#0070f3', padding: '8px 12px', borderRadius: 6 }}>Reservar</a>
-            </Link>
+            <p style={{ color: 'var(--muted)' }}>Horarios: {m.times.join(' · ')}</p>
+            <div style={{ marginTop: 10 }}>
+              <Link href={`/book/${m.id}`}><a className="btn btn-primary">Reservar</a></Link>
+            </div>
           </article>
         ))}
       </div>
